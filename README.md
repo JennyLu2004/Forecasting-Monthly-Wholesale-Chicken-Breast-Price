@@ -87,7 +87,7 @@ Using the champion SARIMAX model, a forward-looking 12-month forecast was genera
 
 ---
 
-## 🎯 Out-of-Sample Validation (March & April 2026)
+## Out-of-Sample Validation (March & April 2026)
 
 To rigorously test the model's real-world utility, the generated forecast was benchmarked directly against actual, newly released USDA market data for **March 2026** and **April 2026**. The model demonstrated exceptionally tight alignment with the actual price action, validating its predictive reliability in live production environments.
 
