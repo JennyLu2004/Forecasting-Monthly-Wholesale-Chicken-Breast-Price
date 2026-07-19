@@ -70,7 +70,6 @@ Multiple iterations of the SARIMAX framework were built to isolate how different
 | **SARIMAX w/ Slaughter Data + Economic Factors** | **17.67%** | **29.51** | **33.51** |
 | **Triple Exponential Smoothing** | **20.15%** | **32.30** | **35.38** |
 
-![Model Performance Comparison Table](https://github.com/user-attachments/assets/2597baa2-7bb8-40af-92a8-29a71d144d46)
 
 ### The Winning Insight
 While **SARIMAX with Slaughter Data** yielded a slightly lower MAPE (15.06%), the **SARIMAX model optimized with Federal Reserve macroeconomic indicators** was selected as the champion model. It achieved the lowest overall **Mean Absolute Error (27.34)** and **Root Mean Squared Error (31.06)**, indicating a much more stable prediction curve with fewer large penalty errors. 
