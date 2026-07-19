@@ -28,10 +28,10 @@ The main analysis, data preparation, modeling, and validation are executed withi
 ## Data Sources & Drivers
 
 The project integrates internal and public data across four primary CSV files containing historical USDA data (2001–2026):
-1. **`EMI monthly prices.csv`** — Base wholesale pricing data for primary cuts (Chicken Breast, Leg Quarters, Wings).
-2. **`slaughtered average pounds per head.csv`** — Supply-side weight metrics.
-3. **`slaughter head counts.csv`** — Supply-side volume metrics.
-4. **`slaughter total pounds.csv`** — Aggregate volume metrics.
+1. **`emi_monthly_prices.csv`** — Base wholesale pricing data for primary cuts (Chicken Breast, Leg Quarters, Wings).
+2. **`slaughtered_avg_lbs_per_head.csv`** — Supply-side weight metrics.
+3. **`slaughtered_head_count.csv`** — Supply-side volume metrics.
+4. **`slaughtered_total_lbs.csv`** — Aggregate volume metrics.
 
 ### Focus Driver
 While the initial exploratory analysis evaluated three main market drivers (**Chicken Breast**, **Leg Quarters**, and **Wings**), this repository focuses explicitly on forecasting **Chicken Breast** prices.
@@ -62,21 +62,20 @@ The dataset was split chronologically using **80% for training** and **20% for t
 
 Multiple iterations of the SARIMAX framework were built to isolate how different feature sets impacted accuracy. 
 
-| Model Flavor / Features | MAPE (%) | MAE | RMSE |
+| Model | MAPE (%) | MAE | RMSE |
 | :--- | :---: | :---: | :---: |
-| **SARIMAX (Economic Factors Only)** <br> *(US Coal, Soybeans, Heating Oil, Unemployment, Consumer Sentiment, CPI, Beef Prices)* | **15.81%** | **27.34** | **31.06** |
-| **SARIMAX (Slaughter Data + Economic Factors)** | *[Insert]* | *[Insert]* | *[Insert]* |
-| **SARIMAX (Slaughter Data Only)** | *[Insert]* | *[Insert]* | *[Insert]* |
-| **SARIMAX (Cut Variations: Wings & Leg Quarters)** | *[Insert]* | *[Insert]* | *[Insert]* |
-| **Triple Exponential Smoothing** | *[Insert]* | *[Insert]* | *[Insert]* |
-
-*(Note: Feel free to fill in the placeholders above using the metrics from the visual benchmark below).*
+| **SARIMAX w/ Economic Factors** <br> *(US Coal, Soybeans, Heating Oil, Unemployment, Consumer Sentiment, CPI, Beef Prices)* | **15.81%** | **27.34** | **31.06** |
+| **SARIMA** | **15.33%** | **28.51** | **34.56** |
+| **SARIMAX w/ Slaughter Data** | **15.06%** | **28.72** | **36.53** |
+| **SARIMAX w/ Slaughter Data + Economic Factors** | **17.67%** | **29.51** | **33.51** |
+| **Triple Exponential Smoothing** | **20.15%** | **32.30** | **35.38** |
 
 ![Model Performance Comparison Table](https://github.com/user-attachments/assets/2597baa2-7bb8-40af-92a8-29a71d144d46)
 
 ### The Winning Insight
-The **SARIMAX model optimized with Federal Reserve macroeconomic indicators** significantly outperformed standard supply-side models. By tracking foundational input costs (soybean feed, heating oil, coal) alongside consumer health metrics (unemployment, CPI, consumer sentiment) and competing proteins (beef prices), the model successfully captured the broader economic pressures driving wholesale poultry valuation.
+While **SARIMAX with Slaughter Data** yielded a slightly lower MAPE (15.06%), the **SARIMAX model optimized with Federal Reserve macroeconomic indicators** was selected as the champion model. It achieved the lowest overall **Mean Absolute Error (27.34)** and **Root Mean Squared Error (31.06)**, indicating a much more stable prediction curve with fewer large penalty errors. 
 
+By tracking foundational input costs (soybean feed, heating oil, coal) alongside consumer health metrics (unemployment, CPI, consumer sentiment) and competing proteins (beef prices), the model successfully captured the broader economic pressures driving wholesale poultry valuation.
 ![Winning Model Snippet](https://github.com/user-attachments/assets/96955e8b-5424-4b2b-b63c-1ed1ce9d6b0b)
 
 ---
